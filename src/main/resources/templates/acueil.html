@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="fragments/head :: headFragment('rendez-vous')"></head>
+
+<body class="d-flex flex-column min-vh-100">
+<!-- Navbar -->
+<div th:replace="fragments/header::headerFragment"></div>
+
+<!-- En-tête -->
+<header class="bg-light text-center py-5 flex-fill">
+  <div class="container">
+    <h1 class="display-4">Bienvenue sur Réservations Simplifiées</h1>
+    <p class="lead">Facilitez la prise de rendez-vous pour vos consultations dentaires.</p>
+    <a href="/rendezvous" class="btn btn-primary btn-lg">Prenez rendez-vous maintenant</a>
+  </div>
+</header>
+
+<!-- Section de Services -->
+<section class="py-5">
+  <div class="container">
+    <h2 class="text-center mb-4">Nos Services</h2>
+    <div class="row">
+      <div class="col-md-4 mb-4 text-center">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">Examen dentaire</h5>
+            <p class="card-text">Des examens réguliers pour assurer votre santé dentaire.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4 text-center">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">Nettoyage des dents</h5>
+            <p class="card-text">Un nettoyage approfondi pour des dents éclatantes.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4 text-center">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">Blanchiment des dents</h5>
+            <p class="card-text">Des solutions efficaces pour un sourire lumineux.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4 text-center">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">Douleur dentaire</h5>
+            <p class="card-text">Soulagement de la douleur dentaire avec des traitements appropriés.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4 text-center">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">Traitement de canal</h5>
+            <p class="card-text">Des traitements de canal pour sauver vos dents.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4 text-center">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">Extraction de dents</h5>
+            <p class="card-text">Extraction en toute sécurité par nos spécialistes.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4 text-center">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">Couronnes et bridges</h5>
+            <p class="card-text">Solutions pour remplacer les dents manquantes.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4 text-center">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">Orthodontie</h5>
+            <p class="card-text">Alignement des dents pour un sourire parfait.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4 text-center">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">Prothèses dentaires</h5>
+            <p class="card-text">Prothèses adaptées pour un confort optimal.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4 text-center">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">Maladies des gencives</h5>
+            <p class="card-text">Traitement des maladies des gencives pour une meilleure santé.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4 text-center">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">Urgence dentaire</h5>
+            <p class="card-text">Assistance rapide pour les urgences dentaires.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4 text-center">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">Soins dentaires pour enfants</h5>
+            <p class="card-text">Des soins adaptés pour les plus jeunes.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div th:replace="fragments/footer::footerFragment"></div>
+</body>
+</html>

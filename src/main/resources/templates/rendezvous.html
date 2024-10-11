@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <head th:include="fragments/head :: headFragment('rendez-vous')"></head>
+    <style>
+        .required:after {
+            content: " *";
+            color: red;
+        }
+
+    </style>
+<body class="d-flex flex-column min-vh-100">
+
+<div th:replace="fragments/header::headerFragment"></div>
+
+<div class="container mt-5 mb-auto">
+    <h1 class="mb-4">Je réserve mon rendez-vous</h1>
+    <form action="/submit-form" class="needs-validation" novalidate method="post" id="rendezvousForm">
+        <div class="form-row">
+            <div class="form-group col-md-4 mb-3">
+                <label for="nom" class="required">Nom</label>
+                <input type="text" class="form-control" id="nom" name="nom" required>
+                <div class="invalid-feedback">Veuillez entrer votre nom.</div>
+            </div>
+            <div class="form-group col-md-4 mb-3">
+                <label for="prenom" class="required">Prénom</label>
+                <input type="text" class="form-control" id="prenom" name="prenom"  required>
+                <div class="invalid-feedback">Veuillez entrer votre prénom.</div>
+            </div>
+            <div class="form-group col-md-4 mb-3">
+                <label for="email" class="required">Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                <div class="invalid-feedback">Veuillez entrer un email valide.</div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-4 mb-3">
+                <label for="portable" class="required">Portable</label>
+                <input type="tel" class="form-control" id="portable" name="portable" placeholder="Portable"  pattern="^(\+213|0)[1-9]\d{8}$" required>
+                <div class="invalid-feedback">Veuillez entrer votre numéro de portable.</div>
+            </div>
+            <div class="form-group col-md-4 mb-3">
+                <label for="adresse" class="required">Adresse</label>
+                <input type="text" class="form-control" id="adresse" name="adresse" placeholder="ex : Ferhoune Akfadou Bejaia" required>
+                <div class="invalid-feedback">Veuillez entrer votre adresse.</div>
+            </div>
+            <div class="form-group col-md-4 mb-3">
+                <label for="form-select" class="required">Motif de Consultation</label>
+                <select class="form-select" id="form-select" name="motif" aria-label="Motif de Consultation" required>
+                    <option value="" selected disabled>Choisissez une consultation</option>
+                    <option value="Examen dentaire">Examen dentaire</option>
+                    <option value="Nettoyage des dents">Nettoyage des dents</option>
+                    <option value="Blanchiment des dents">Blanchiment des dents</option>
+                    <option value="Douleur dentaire">Douleur dentaire</option>
+                    <option value="Traitement de canal">Traitement de canal</option>
+                    <option value="Extraction de dents">Extraction de dents</option>
+                    <option value="Couronnes et bridges">Couronnes et bridges</option>
+                    <option value="Orthodontie">Orthodontie</option>
+                    <option value="Prothèses dentaires">Prothèses dentaires</option>
+                    <option value="Maladies des gencives">Maladies des gencives</option>
+                    <option value="Urgence dentaire">Urgence dentaire</option>
+                    <option value="Soins dentaires pour enfants">Soins dentaires pour enfants</option>
+                </select>
+                <div class="invalid-feedback">Veuillez sélectionner un motif de consultation.</div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-4 mb-3">
+                <label for="date" class="required">Date du rendez-vous :</label>
+                <input type="date" id="date" name="date-rdv" class="form-control" required>
+                <div class="invalid-feedback">Veuillez choisir une date.</div>
+            </div>
+
+            <div class="form-group col-md-4 mb-3 d-flex align-items-end">
+                <button type="button" onclick="getCrenauxParDate()" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#creneauModal">
+                    Afficher les créneaux disponibles
+                </button>
+                <input type="hidden" id="creneauSelectionne" name="creneauSelectionne" />
+            </div>
+        </div>
+
+        <!-- Modal pour afficher les créneaux -->
+        <div class="modal fade" id="creneauModal" tabindex="-1" aria-labelledby="creneauModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="creneauModalLabel">Créneaux Disponibles</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="list-group" id="crenauxList"></div>
+                        <div class="row" id="Norendezvous"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                        <button type="button" class="btn btn-primary" onclick="confirmerRendezVous(event)">Confirmer le rendez-vous</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="mt-auto" th:replace="fragments/footer::footerFragment"></div>
+</body>
+
+</html>

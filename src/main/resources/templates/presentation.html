@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="fragments/head :: headFragment('Présentation Docteur')"></head>
+
+<body class="d-flex flex-column min-vh-100">
+<!-- Navbar -->
+<div th:replace="fragments/header::headerFragment"></div>
+
+<!-- En-tête -->
+<header class="bg-light text-center py-5 flex-fill">
+  <div class="container">
+    <h1 class="display-4">Dr. B. Belaidi</h1>
+    <p class="lead">Chirurgien-dentiste spécialisé en soins dentaires.</p>
+  </div>
+</header>
+
+<!-- Présentation du Docteur -->
+<section class="py-5">
+  <div class="container">
+    <h2 class="text-center mb-4">À propos du Dr. B. Belaidi</h2>
+    <div class="row">
+      <div class="col-md-6 text-center mb-4">
+        <img src="https://via.placeholder.com/300" alt="Photo du docteur" class="img-fluid rounded-circle">
+      </div>
+      <div class="col-md-6">
+        <h5>Biographie</h5>
+        <p>Dr. B. Belaidi est un chirurgien-dentiste avec plus de 10 ans d'expérience dans le domaine dentaire. Il a obtenu son diplôme de la faculté de médecine dentaire de l'Université de Béjaïa et a suivi plusieurs formations en orthodontie et en soins dentaires esthétiques.</p>
+        <h5>Spécialités</h5>
+        <ul>
+          <li>Soins dentaires généraux</li>
+          <li>Orthodontie</li>
+          <li>Implants dentaires</li>
+          <li>Blanchiment des dents</li>
+          <li>Chirurgie buccale</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Horaires de Disponibilité -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <h2 class="text-center mb-4">Horaires de Disponibilité</h2>
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th>Jour</th>
+        <th>Heures</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>Lundi</td>
+        <td>09:00 - 12:00, 14:00 - 18:00</td>
+      </tr>
+      <tr>
+        <td>Mardi</td>
+        <td>09:00 - 12:00, 14:00 - 18:00</td>
+      </tr>
+      <tr>
+        <td>Mercredi</td>
+        <td>Fermé</td>
+      </tr>
+      <tr>
+        <td>Jeudi</td>
+        <td>09:00 - 12:00, 14:00 - 18:00</td>
+      </tr>
+      <tr>
+        <td>Vendredi</td>
+        <td>09:00 - 12:00, 14:00 - 18:00</td>
+      </tr>
+      <tr>
+        <td>Samedi</td>
+        <td>09:00 - 12:00</td>
+      </tr>
+      <tr>
+        <td>Dimanche</td>
+        <td>Fermé</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- Bouton Prendre Rendez-vous -->
+<section class="py-5 text-center">
+  <div class="container">
+    <h2>Prendre Rendez-vous</h2>
+    <p>Pour prendre rendez-vous avec le Dr. B. Belaidi, cliquez sur le bouton ci-dessous.</p>
+    <a href="/rendezvous" class="btn btn-primary btn-lg">Prendre Rendez-vous</a>
+  </div>
+</section>
+
+<div th:replace="fragments/footer::footerFragment"></div>
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head th:include="fragments/head :: headFragment('consultations')"></head>
+<body class="d-flex flex-column min-vh-100">
+<div th:replace="fragments/headeradmin::headeradminFragment"></div>
+<link rel="stylesheet" th:href="@{/css/consultations.css}">
+<h1>Liste des Consultations</h1>
+
+<table id="consultationsTable" class="display">
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>nom</th>
+        <th>prenom</th>
+        <th>mail</th>
+        <th>portable</th>
+        <th>adresse</th>
+        <th>motifConsultation</th>
+        <th>date</th>
+        <th>heureDebut</th>
+        <th>heureFin</th>
+        <th>Action</th>
+        <th>Status Du rendez-vous</th>
+         <th>Présence du patient</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+</table>
+
+
+
+
+<script>
+    $(document).ready(function() {
+        $('#consultationsTable').DataTable({
+            ajax: {
+                url: '/consultations',
+                dataSrc: ''
+            },
+            columns: [
+                { data: 'id' },
+                { data: 'nom' },
+                { data: 'prenom' },
+                { data: 'mail' },
+                { data: 'portable' },
+                { data: 'adresse' },
+                { data: 'motifConsultation' },
+                { data: 'creneau.date' },
+                { data: 'creneau.heureDebut' },
+                { data: 'creneau.heureFin' },
+
+
+
+                {
+                    data: null,
+                    bSortable: false,
+                    render: function (data, type, row) {
+                        let actions = '';
+
+                        if (!row.creneau.est_absent) {
+                            actions += `<li><a class="dropdown-item absent" href="#" data-id="${row.creneau.id}">Marquer le Patient Absent</a></li>`;
+                        }
+
+                        if (!row.creneau.est_annule) {
+                            actions += `<li><a class="dropdown-item annuler" href="#" data-id="${row.creneau.id}">Annuler le rendez-vous</a></li>`;
+                        }
+
+                        if (actions === '') {
+                            return '<span>Aucune action disponible</span>';
+                        }
+
+                        return `
+            <div class="dropdown">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+
+                </button>
+                <ul class="dropdown-menu">
+                    ${actions}
+                </ul>
+            </div>
+        `;
+                    }
+                }
+
+                ,
+                {
+                    data: 'creneau.est_annule',
+                    bSortable: false,
+                    render: function (data, type, row) {
+                        if (data) {
+                            return 'Annulé';
+                        } else {
+                            return 'Confirmé';
+                        }
+                    }
+                },
+
+
+                {
+                    data: 'creneau.est_absent',
+                    bSortable: false,
+                    render: function (data) {
+                        return data ? 'Absent' : 'Présent';
+                    }
+                }
+            ],
+            responsive: true
+        });
+
+        $('#consultationsTable').on('click', '.annuler', function(e) {
+            e.preventDefault();
+
+            let id = $(this).data('id');
+
+
+
+
+
+            $.ajax({
+                url: '/Annulation',
+                type: 'POST',
+                data: { id: id },
+                success: function(response) {
+                    showAlert('success', 'Rendez-vous annulé avec succès.');
+                    $('#consultationsTable').DataTable().ajax.reload();
+                },
+                error: function() {
+                    showAlert('danger', 'Erreur lors de l\'annulation du rendez-vous.');
+                }
+            });
+        });
+
+
+        $('#consultationsTable').on('click', '.absent', function(e) {
+            e.preventDefault();
+
+            let id = $(this).data('id');
+
+
+            $.ajax({
+                url: '/MarquerAbsent',
+                type: 'POST',
+                data: { id: id },
+                success: function(response) {
+                    alert("Patient marqué absent avec succès.");
+                    $('#consultationsTable').DataTable().ajax.reload();
+                },
+                error: function() {
+                    alert("Erreur lors du marquage du patient absent.");
+                }
+            });
+        });
+    });
+</script>
+
+<div class="mt-auto" th:insert="fragments/footer::footerFragment"></div>
+</body>
+
+
+</html>
+

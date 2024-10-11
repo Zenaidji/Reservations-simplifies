@@ -1,0 +1,20 @@
+html, body {
+    height: 100%; /* Permet au body de prendre toute la hauteur de la fenêtre */
+    margin: 0; /* Supprime les marges par défaut */
+}
+
+body {
+    display: flex;
+    flex-direction: column; /* Colonne pour aligner le contenu verticalement */
+}
+
+footer {
+    background: #f8f9fa; /* Exemple de couleur de fond */
+    padding: 20px; /* Espacement du footer */
+    text-align: center; /* Centrer le texte */
+    width: 100%; /* Prendre toute la largeur */
+}
+
+.table {
+    flex-grow: 1; /* Permet au tableau de prendre tout l'espace disponible */
+}
