@@ -19,9 +19,9 @@ Ce projet utilise **Spring Boot** pour la gestion des services backend, avec une
 ## Technologies utilisées
 
 - **Backend** : Spring Boot (Java)
-- **Frontend** : Thymeleaf, HTML, CSS, JavaScript (jQuery)
-- **Base de données** : H2 (ou toute autre base de données relationnelle compatible avec Spring JPA)
-- **Styles CSS** : Bootstrap 4 pour le responsive design et la gestion de la mise en page.
+- **Frontend** : Thymeleaf, HTML, CSS, JavaScript (jQuery),Bootstrap,Material symbols pour les icons
+- **Base de données** : MYSQL (ou toute autre base de données relationnelle compatible avec Spring JPA)
+- **Styles CSS** : Bootstrap 5.3 pour le responsive design et la gestion de la mise en page.
 - **AJAX** : Gestion asynchrone des formulaires et des actions de gestion des consultations.
 
 ## Installation
@@ -31,7 +31,7 @@ Ce projet utilise **Spring Boot** pour la gestion des services backend, avec une
 - **Java JDK 11+**
 - **Maven** (pour la gestion des dépendances)
 - **IDE** compatible avec Java (ex : IntelliJ IDEA, Eclipse)
-- **Base de données** (H2 par défaut, mais configurable avec MySQL, PostgreSQL, etc.)
+- **Base de données** (installer un serveur mysql)
 
 ### Étapes d'installation
 
@@ -52,10 +52,22 @@ Ce projet utilise **Spring Boot** pour la gestion des services backend, avec une
    - Le projet utilise par défaut une base de données H2 en mémoire. Pour configurer une autre base de données (par exemple MySQL ou PostgreSQL), modifiez le fichier `application.properties` dans le répertoire `src/main/resources` :
 
      ```properties
-     spring.datasource.url=jdbc:mysql://localhost:3306/votre_db
-     spring.datasource.username=votre_utilisateur
-     spring.datasource.password=votre_mot_de_passe
-     spring.jpa.hibernate.ddl-auto=update
+  
+      spring.datasource.url=jdbc:mysql://localhost:3306/rendezvous
+      spring.datasource.username=user
+      spring.datasource.password=password
+      spring.jpa.database-platform=org.hibernate.dialect.MySQL8Dialect
+      spring.thymeleaf.prefix=classpath:/templates/
+      spring.thymeleaf.suffix=.html
+      spring.thymeleaf.mode=HTML
+      spring.thymeleaf.encoding=UTF-8
+      spring.thymeleaf.cache=false
+      spring.jpa.show-sql=true
+      spring.jpa.properties.hibernate.boot.allow_jdbc_metadata_access=false
+      spring.jpa.hibernate.ddl-auto=update
+
+
+     
      ```
 
 4. **Construire le projet avec Maven** :
