@@ -38,13 +38,13 @@ Ce projet utilise **Spring Boot** pour la gestion des services backend, avec une
 1. **Cloner le dépôt** :
 
    ```bash
-   git clone https://github.com/votre-utilisateur/systeme-rendez-vous.git
+   git clone https://github.com/Zenaidji/R-servations-simplifi-s.git
    ```
 
 2. **Naviguer dans le répertoire du projet** :
 
    ```bash
-   cd systeme-rendez-vous
+   cd R-servations-simplifi-s
    ```
 
 3. **Configurer la base de données** :
