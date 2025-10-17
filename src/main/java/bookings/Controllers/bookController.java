@@ -29,6 +29,11 @@ public class bookController {
     public List<Creneaux> getAllCreneauxParDate(@RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
         return creneauService.getCreneauxParDate(date);
     }
+    @GetMapping("/getDatesDisponibles")
+    @ResponseBody
+    public List<LocalDate> getDatesDisponibles() {
+        return creneauService.getDatesDisponibles();
+    }
 
     @GetMapping("/rendezvous")
     public String rendezVous() {

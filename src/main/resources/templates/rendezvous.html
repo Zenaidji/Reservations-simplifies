@@ -8,10 +8,18 @@
             color: red;
         }
 
+    .disponible-date a {
+        background-color: lightgreen !important;
+        color: black !important;
+
+    }
+
+
     </style>
 <body class="d-flex flex-column min-vh-100">
 
-<div th:replace="fragments/header::headerFragment"></div>
+
+<div th:replace="fragments/header::headerFragment">    </div>
 
 <div class="container mt-5 mb-auto">
     <h1 class="mb-4">Je réserve mon rendez-vous</h1>
@@ -69,7 +77,9 @@
         <div class="form-row">
             <div class="form-group col-md-4 mb-3">
                 <label for="date" class="required">Date du rendez-vous :</label>
-                <input type="date" id="date" name="date-rdv" class="form-control" required>
+<!--                <input type="date" id="date" name="date-rdv" class="form-control" required>-->
+                <input id="date" name="date-rdv" type="text" placeholder="Choisissez une date" class="form-control" required/>
+
                 <div class="invalid-feedback">Veuillez choisir une date.</div>
             </div>
 

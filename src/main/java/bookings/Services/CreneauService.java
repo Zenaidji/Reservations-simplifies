@@ -20,6 +20,9 @@ public class CreneauService {
     @Autowired
     private ConsultationRepository consultationRepository;
 
+    public List<LocalDate> getDatesDisponibles() {
+        return creneauRepository.findDatesAvecCreneauxDisponibles();
+    }
 
     public List<Creneaux> getCreneauxParDate(LocalDate date) {
         return creneauRepository.findByDateAndEstPris(date,false);

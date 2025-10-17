@@ -1,26 +1,9 @@
-function getCurrentDate() {
-    let today = new Date();
-    let year = today.getFullYear();
-    let month = String(today.getMonth() + 1).padStart(2, '0');
-    let day = String(today.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`;
-}
 
-function getEndOfMonth() {
-    let today = new Date();
-    let year = today.getFullYear();
-    let month = today.getMonth() + 1;
-    let lastDay = new Date(year, month, 0).getDate();
-    let lastMonth = String(month).padStart(2, '0');
-    let day = String(lastDay).padStart(2, '0');
-    return `${year}-${lastMonth}-${day}`;
-}
+
 
 $(document).ready(function () {
-    $('#date').attr('min', getCurrentDate());
-    $('#date').attr('max', getEndOfMonth());
-    $('#date').val(getCurrentDate());
 
+    initDatepicker();
    $(document).on('click', '.list-group-item', function () {
         $('.list-group-item').removeClass('active');
         $(this).addClass('active');
@@ -110,4 +93,36 @@ function confirmerRendezVous(event) {
     }
 }
 
+
+function initDatepicker() {
+    $.ajax({
+        url: "/getDatesDisponibles",
+        type: "GET",
+        success: function (datesDisponibles) {
+            // Transformer le tableau en Set pour lookup rapide
+            let datesSet = new Set(datesDisponibles);
+
+            $("#date").datepicker({
+                dateFormat: "yy-mm-dd",   // format YYYY-MM-DD
+                minDate: 0,               // aujourd’hui
+                maxDate: "+30D",          // +30 jours
+                beforeShowDay: function (date) {
+                    let y = date.getFullYear();
+                    let m = String(date.getMonth() + 1).padStart(2, '0');
+                    let d = String(date.getDate()).padStart(2, '0');
+                    let formatted = `${y}-${m}-${d}`;
+
+                    if (datesSet.has(formatted)) {
+                        return [true, "disponible-date", "Disponible"]; // activé + CSS
+                    } else {
+                        return [false, "", "Indisponible"]; // désactivé
+                    }
+                }
+            });
+        },
+        error: function () {
+            console.error("Erreur lors de la récupération des dates disponibles");
+        }
+    });
+}
 
